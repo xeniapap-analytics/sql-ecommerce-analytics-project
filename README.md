@@ -13,6 +13,7 @@ All queries and results are included below
 
 1. Customer Data Exploration
 Goal: Retrieve all customer information to understand the entire customer dataset.
+
 SELECT * FROM customers;
 
 Results:
@@ -26,6 +27,7 @@ Results:
 
 2. Targeted Customer Information for Marketing
 Goal: Marketing needs names and emails only.
+
 SELECT first_name, last_name, email FROM customers;
 
 Results:
@@ -39,6 +41,7 @@ Results:
 
 3. Shipping Issue Investigation — California Customers
 Goal: Identify customers located in California (state = 'CA').
+
 SELECT * FROM customers WHERE state = 'CA';
 
 Results:
@@ -48,6 +51,7 @@ Results:
 
 4. Premium Customer Identification
 Goal: Find all premium customers for targeted promotions
+
 SELECT first_name, last_name, email FROM customers WHERE is_premium = TRUE;
 
 Results:
@@ -59,6 +63,7 @@ Results:
 
 5. Product Price Analysis — Sort by Highest Price
 Goal: Display all products ordered from highest to lowest price
+
 SELECT * FROM products ORDER BY price DESC;
 
 Results:
@@ -72,6 +77,7 @@ Results:
 
 6. Top 3 Most Expensive Products
 Goal: Prepare a summary of the 3 most expensive products.
+
 SELECT product_name, price 
 FROM products 
 ORDER BY price DESC 
@@ -86,6 +92,7 @@ Results:
 
 7. Product Catalog Metrics
 Goal: Calculate total number of products and average price
+
 SELECT COUNT(*) AS total_products, AVG(price) AS avg_price FROM products;
 
 Results:
@@ -95,6 +102,7 @@ Results:
 
 8. Performance by Product Category
 Goal: Show number of products and average price per category, sorted by highest avg price.
+
 SELECT 
     category, 
     COUNT(*) AS product_count, 
@@ -113,6 +121,7 @@ Results:
 
 9. Customer Orders Summary — INNER JOIN
 Goal: Link customer data with order data to produce a consolidated view.
+
 SELECT 
     first_name, 
     last_name, 
@@ -134,6 +143,7 @@ Results:
 
 10. Final Executive Report — Multi-Table JOIN
 Goal: Create a fully detailed report combining customer, order, order item, and product data
+
 SELECT 
     CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
     p.product_name,
