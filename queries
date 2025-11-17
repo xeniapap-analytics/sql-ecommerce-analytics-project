@@ -1,0 +1,93 @@
+-- ==========================================
+-- E-COMMERCE BUSINESS INTELLIGENCE PROJECT
+-- SQL QUERIES BY: Xenia Papoutsidou
+-- ==========================================
+
+-- ==========================================
+-- 1. BASIC EXPLORATION OF CUSTOMERS
+-- ==========================================
+
+-- Get all customer information
+SELECT * 
+FROM customers;
+
+-- Get customer full name and email
+SELECT first_name, last_name, email 
+FROM customers;
+
+-- Filter customers by state (California)
+SELECT * 
+FROM customers 
+WHERE state = 'CA';
+
+-- Get all premium customers
+SELECT first_name, last_name, email 
+FROM customers 
+WHERE is_premium = TRUE;
+
+
+-- ==========================================
+-- 2. PRODUCT ANALYSIS
+-- ==========================================
+
+-- Get all products ordered by price (highest first)
+SELECT * 
+FROM products 
+ORDER BY price DESC;
+
+-- Get the three most expensive products
+SELECT product_name, price 
+FROM products 
+ORDER BY price DESC 
+LIMIT 3;
+
+-- Get total number of products and average price
+SELECT 
+    COUNT(*) AS total_products, 
+    AVG(price) AS avg_price 
+FROM products;
+
+-- Product count and average price per category
+SELECT 
+    category, 
+    COUNT(*) AS product_count, 
+    AVG(price) AS avg_price 
+FROM products 
+GROUP BY category 
+ORDER BY avg_price DESC;
+
+
+-- ==========================================
+-- 3. CUSTOMER ORDERS ANALYSIS
+-- ==========================================
+
+-- Join customers with their orders
+SELECT 
+    customers.first_name, 
+    customers.last_name, 
+    orders.order_id, 
+    orders.order_date, 
+    orders.total_amount
+FROM customers
+INNER JOIN orders 
+    ON customers.customer_id = orders.customer_id;
+
+
+-- ==========================================
+-- 4. FULL ORDER BREAKDOWN (WITH ITEMS)
+-- ==========================================
+
+-- Get detailed order info (customer + product + order items)
+SELECT 
+    CONCAT(c.first_name, ' ', c.last_name) AS customer_name,
+    p.product_name,
+    o.order_date,
+    oi.quantity,
+    o.total_amount
+FROM customers AS c
+JOIN orders AS o 
+    ON c.customer_id = o.customer_id
+JOIN order_items AS oi 
+    ON o.order_id = oi.order_id
+JOIN products AS p 
+    ON oi.product_id = p.product_id;
