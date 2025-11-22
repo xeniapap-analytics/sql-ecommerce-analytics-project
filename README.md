@@ -1,11 +1,10 @@
-SQL Customer & Product Analytics — Complete Project
-This project contains a full SQL analytics assignment based on a fictional e-commerce database.
+## SQL Customer & Product Analytics
+This project contains a SQL analytics assignment based on a fictional e-commerce database.
 It demonstrates data exploration, filtering, aggregation, ordering, and multi-table JOIN operations across several datasets:
-customers
-products
-orders
-order_items
-The assignment consists of 10 progressively more complex SQL tasks, each focused on a real-world business requirement: marketing, sales, shipping operations, and executive reporting.
+-customers
+-products
+-orders
+-order_items
 
 All queries and results are included below
 
